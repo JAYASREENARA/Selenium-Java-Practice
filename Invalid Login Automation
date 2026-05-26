@@ -1,0 +1,44 @@
+package com.ecommerce.bigbasket;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FirstTest {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        WebDriver driver = new ChromeDriver();
+
+        // Open login page
+        driver.get("https://practicetestautomation.com/practice-test-login/");
+
+        // Maximize browser
+        driver.manage().window().maximize();
+
+        // Enter wrong username
+        driver.findElement(By.id("username"))
+              .sendKeys("wronguser");
+
+        // Enter wrong password
+        driver.findElement(By.id("password"))
+              .sendKeys("wrongpassword");
+
+        // Click login button
+        driver.findElement(By.id("submit"))
+              .click();
+
+        // Wait
+        Thread.sleep(5000);
+
+        // Get error message
+        String errorMessage = driver.findElement(By.id("error"))
+                                    .getText();
+
+        // Print error message
+        System.out.println(errorMessage);
+
+        // Close browser
+        driver.quit();
+    }
+}
